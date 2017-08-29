@@ -1,0 +1,96 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pu="http://primefaces.org/avalon">
+
+    <h:form id="menuform">
+        <div class="layout-menu-container #{guestPreferences.menuClass}">
+            <div class="nano">
+                <div class="nano-content menu-scroll-content">
+                    <ui:fragment rendered="#{guestPreferences.profileMode == 'inline' and guestPreferences.menuLayout != 'menu-layout-static menu-layout-horizontal'}">
+                        <div class="profile">
+                            <a id="profile-options" href="#">
+                                <p:graphicImage name="images/avatar.png" library="avalon-layout" styleClass="profile-image" style="border: 0 none"/>
+                                <span class="profile-name">Isabel Oliviera</span>
+                                <i class="fa fa-fw fa-caret-down"></i>
+                                <span class="profile-role">Marketing</span>
+                            </a>
+                        </div>
+
+                        <ul id="profile-menu" class="layout-menu">
+                            <li role="menuitem">
+                                <a href="#">
+                                    <i class="fa fa-fw fa-user"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Profile</div>
+                                </div>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#">
+                                    <i class="fa fa-fw fa-user-secret"></i>
+                                    <span>Privacy</span>
+                                </a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Privacy</div>
+                                </div>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#">
+                                    <i class="fa fa-fw fa-cog"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Settings</div>
+                                </div>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#">
+                                    <i class="fa fa-fw fa-sign-out"></i>
+                                    <span>Logout</span>
+                                </a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Logout</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </ui:fragment>
+
+                    <pu:menu widgetVar="me">
+                        <p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-fw fa-home"/>
+
+                        <p:submenu id="om_hierarchy" label="Hệ thống" icon="fa fa-fw fa-gg">
+                            <p:submenu id="om_sm1" label="Người dùng" icon="fa fa-user">
+                                 <p:menuitem id="om_lnk111" value="Danh sách" icon="fa fa-fw fa-sign-in" url="#" />
+                                 <p:menuitem id="om_lnk112" value="Thêm mới" icon="fa fa-fw fa-sign-in" url="#" />
+
+                            </p:submenu>
+                            <p:submenu id="om_sm2" label="Menu hệ thống" icon="fa fa-bars">
+									<p:menuitem id="om_lnk211" value="Danh sách menu" icon="fa fa-fw fa-sign-in" url="/system/menu" />
+                                    <p:menuitem id="om_lnk212" value="Thêm mới" icon="fa fa-fw fa-sign-in" url="system/menu" />
+                            </p:submenu>
+                            <p:submenu id="om_sm3" label="Danh mục hệ thống" icon="fa fa-bars">
+									<p:menuitem id="om_lnk311" value="Danh sách danh mục" icon="fa fa-fw fa-sign-in" url="#" />
+                                    <p:menuitem id="om_lnk312" value="Thêm mới" icon="fa fa-fw fa-sign-in" url="#" />
+                            </p:submenu>
+                            <p:submenu id="om_sm4" label="Phân quyền" icon="fa fa-bars">
+									<p:menuitem id="om_lnk411" value="Hành động" icon="fa fa-fw fa-sign-in" url="/system/authorization/right" />
+                                    <p:menuitem id="om_lnk412" value="Vai trò" icon="fa fa-fw fa-sign-in" url="/system/authorization/role" />
+                            </p:submenu>
+                        </p:submenu>
+                        
+                        <p:menuitem id="om_doc" value="Hỗ trợ" icon="fa fa-fw fa-book" />
+                    </pu:menu>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

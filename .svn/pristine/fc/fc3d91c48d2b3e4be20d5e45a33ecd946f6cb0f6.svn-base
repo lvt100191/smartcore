@@ -1,0 +1,102 @@
+##############################################################################################
+##############################################################################################
+#####################        QUI DINH CACH DAT TEN MESSAGE CUA DU AN           ############################
+###########               Cac mesage ung voi phan nao thi phan day se duoc dung dau cua ten message.             ########### 
+###########               Vi du: dinh nghia mesage cho cac label, button thi ta co the dat nhu sau:                          ########### 
+###########                          label.username = Tên đăng nhập.                                                                                   ########### 
+###########                          button.save = Lưu thông tin.
+javax.faces.component.UIInput.REQUIRED={0}: Yêu cầu nhập dữ liệu.
+###########      KHI DINH NGHIA MOT MESSAGE MOI CAN KIEM TRA XEM MESSAGE DA CO HAY CHUA      ########### 
+
+page.title = Công cụ
+login.title = Đăng nhập
+title.welcome = Xin chào
+title.login = Đăng nhập vào hệ thống
+btn.login = Đăng nhập
+
+input.required = Yêu cầu nhập dữ liệu.
+
+# Validator message
+validator.false = Giá trị không đúng định dạng.
+validator.number = Giá trị không phải là số.
+validator.email = Email không đúng định dạng.
+validator.password = Mật khẩu không đúng định dạng.
+validator.special = Không được nhập kí tự đặc biệt.
+
+# Label message
+
+label.hello = Xin chào
+label.logout = Thoát
+
+label.choose = ---Lựa chọn---
+label.no_data = Không tìm thấy dữ liệu
+label.confirm = Xác nhận
+label.are_you_sure = Bạn có chắc?
+
+btn.add_new = Thêm mới
+btn.update = Cập nhật
+btn.edit = Sửa
+btn.delete = Xóa
+btn.close = Đóng
+btn.search = Tìm kiếm
+btn.yes = Đồng ý
+btn.no = Không
+
+msg.update_success = Cập nhật thành công
+msg.add_new_success = Thêm mới thành công
+msg.update_fail = Cập nhật thất bại
+msg.delele_success = Xóa thành công
+msg.delele_fail = Xóa thất bại
+
+label.title_detail = Thông tin chi tiết
+
+label.username = Tên đăng nhập
+label.password = Mật khẩu
+label.firstName = Tên
+label.lastName = Họ
+label.email = Email
+label.mobile = Số ĐT
+label.address = Địa chỉ
+label.birthday = Ngày sinh
+label.status = Trạng thái
+label.gender = Giới tính
+label.type = Loại
+label.note = Ghi chú
+label.status_active = Đang hoạt động
+label.status_lock = Khóa
+label.status_not_active = Chưa kích hoạt
+label.gender_male = Nam
+label.gender_female = Nữ
+label.stt = STT 
+label.create_date = Ngày tạo 
+label.last_login = Đăng nhập cuối 
+
+
+label.url = URL
+label.title = Tiêu đề
+label.description = Mô tả
+label.level = Level
+label.parentId = Cha
+label.scRightAlias = Quyền
+label.icon = Icon
+label.alias = Alias
+
+label.id = id
+label.name = Tên
+
+#right
+label.right_id=ID
+label.right_name = Tên hành động
+label.right_desc = Mô tả
+label.right_action= Alias
+btn.right_edit= Sửa
+btn.right_del= Xóa
+
+
+
+
+
+
+
+
+

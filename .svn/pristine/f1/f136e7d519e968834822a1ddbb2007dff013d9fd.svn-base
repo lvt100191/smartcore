@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>#{msg['login.title']}</title>
+        <h:outputScript name="js/layout.js" library="avalon-layout" />
+    </h:head>
+
+    <h:body styleClass="login-body">
+        <div class="login-image"></div>
+        <div class="card login-panel ui-fluid">
+            <div class="login-panel-content">
+            <h:form id="login">
+                <div class="ui-g">
+                	<div class="ui-g-12">
+			    		<p:growl id="mainMessage" showSummary="false" showDetail="true" sticky="true" life="30000" />
+			    	</div>
+                    <div class="ui-g-12 ui-sm-6 ui-md-6" style="text-align:left;">
+                        <p:graphicImage name="images/login/icon-login.svg" library="avalon-layout" />
+                    </div>
+                    <div class="ui-g-12 ui-sm-6 ui-md-6" style="text-align:right;">
+                        <h2 class="welcome-text">#{msg['title.welcome']}</h2>
+                        <span class="guest-sign-in">#{msg['title.login']}</span>
+                    </div>
+                    <div class="ui-g-12" style="text-align:left;">
+                        <h:panelGroup>
+                            <label class="login-label">#{msg['label.username']}</label>
+                            <div class="login-input">
+                                <p:inputText id="username" styleClass="w80pc" 
+									 required="true" label="#{msg['label.username']}" 
+									 value="#{authenController.newObj.username}" validator="form.SpecialCharacterValidator" />
+								<p:watermark for="username" value="#{msg['label.username']}" />
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                    <div class="ui-g-12" style="text-align:left;">
+                        <h:panelGroup>
+                            <label class="login-label">#{msg['label.password']}</label>
+                            <div class="login-input">
+                                <p:password id="password" styleClass="w80pc"
+									required="true" label="#{msg['label.password']}"
+									 value="#{authenController.newObj.password}"  />
+								<p:watermark for="password" value="#{msg['label.password']}" />
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                    <div class="ui-g-12 ui-sm-6 ui-md-6">
+                        <p:commandButton value="#{msg['btn.login']}"
+							action="#{authenController.login}"
+							oncomplete="PF('blockUiSearch').hide()"		
+							onstart="PF('blockUiSearch').show()">
+						</p:commandButton>
+                    </div>
+                    
+                    <div class="ui-g-12 ui-sm-6 ui-md-6" style="padding:12px;">
+<!--                         <a href="#" class="forget-password">Forget Password?</a>
+ -->                    </div>
+                </div>
+            </h:form>
+            </div>
+        </div>
+        
+        <h:outputStylesheet name="css/layout-blue.css" library="avalon-layout" />
+    </h:body>
+
+</html>

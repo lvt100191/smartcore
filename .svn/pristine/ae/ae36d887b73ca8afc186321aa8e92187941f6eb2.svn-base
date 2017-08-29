@@ -1,0 +1,16 @@
+#Datasource
+ds.database-driver=oracle.jdbc.driver.OracleDriver
+ds.url=jdbc:oracle:thin:@123.29.75.133:1521/pdbvisa
+ds.username=smartcore
+ds.password=smartcore#2017
+
+#ds.database-driver=oracle.jdbc.driver.OracleDriver
+#ds.url=jdbc:oracle:thin:@10.33.68.60:1521:orcl
+#ds.username=vckm
+#ds.password=123456
+ 
+#Hibernate config
+hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+hibernate.show_sql=true
+current_session_context_class=thread
+hibernate.hbm2ddl.auto=update

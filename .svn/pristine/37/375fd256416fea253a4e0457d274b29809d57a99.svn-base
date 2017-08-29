@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration packages="com.media.plugins" monitorInterval="60">
+	<properties>
+		<property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | [%t] (%F:%L) - %m%n</property>
+
+		<property name="com.media">smart_core</property>
+	</properties>
+	<appenders>
+		<!-- file appender -->
+		<RollingFile name="com.media" fileName="../logs/${com.media}.log"
+			append="true" filePattern="../logs/$${date:yyyy-MM-dd}/${com.media}-%d{MM-dd-yyyy}-%i.log.gz">			
+			<PatternLayout pattern="${pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="200 MB" />
+			</Policies>
+		</RollingFile>
+
+		<!-- console appender -->
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+	</appenders>
+	<loggers>
+		<!-- the root category -->
+		<root level="INFO" additivity="true">
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="com.media" />
+		</root>
+		<logger name="com.media" level="TRACE">
+			<AppenderRef ref="com.media" />
+		</logger>
+		<!-- Dinh nghia them logger o day -->
+	</loggers>
+</configuration>

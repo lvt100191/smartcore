@@ -1,0 +1,211 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/layout/avalon/template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="insertEditForm">
+			<p:dialog widgetVar="dlgInfor" header="#{msg['label.title_detail']}"
+				id="dlgInfor" showEffect="clip" hideEffect="drop" height="90%"
+				width="80%">
+				<p:ajax event="close">
+					<p:resetInput target=":insertEditForm" />
+				</p:ajax>
+
+				<ui:remove>
+					<p:growl id="mainMessage" showDetail="true" sticky="true"
+						life="5000" />
+				</ui:remove>
+				<p:panel id="pnlInfo">
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:messages id="mainMessage" showSummary="false"
+								showDetail="true" autoUpdate="true" closable="true" />
+						</div>
+						<div class="ui-g-2">
+							<h:outputText value="#{msg['label.right_name']}" />
+							<span class="required">*</span>
+						</div>
+						<div class="ui-g-4">
+							<p:inputText id="name" styleClass="w80pc" required="true"
+								label="#{msg['label.right_name']}"
+								value="#{scRightController.newObj.name}"
+								validator="form.SpecialCharacterValidator" />
+							<p:watermark for="name" value="#{msg['label.right_name']}" />
+						</div>
+						<div class="ui-g-2">
+							<h:outputText value="#{msg['label.right_action']} " />
+							<span class="required">*</span>
+						</div>
+						<div class="ui-g-4">
+							<p:inputText id="action" styleClass="w80pc" required="true"
+								label="#{msg['label.right_action']} "
+								value="#{scRightController.newObj.action}"
+								validator="form.SpecialCharacterValidator" />
+							<p:watermark for="action" value="#{msg['label.right_action']} " />
+						</div>
+						<div class="ui-g-2">
+							<h:outputText value="#{msg['label.right_desc']} " />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText id="description" styleClass="w80pc"
+								value="#{scRightController.newObj.description}"
+								validator="form.SpecialCharacterValidator" />
+							<p:watermark for="description"
+								value="#{msg['label.right_desc']} " />
+						</div>
+					</div>
+					<div class="ui-g">
+						<div class="ui-g-10"></div>
+						<div class="ui-g-2">
+							<p:commandButton value="#{msg['btn.update']}"
+								action="#{scRightController.saveOrUpdate}"
+								oncomplete="PF('blockUiSearch').hide()"
+								onstart="PF('blockUiSearch').show()"
+								update=":insertEditForm:pnlInfo, :insertEditForm:mainMessage">
+							</p:commandButton>
+							<p:commandButton value="#{msg['btn.close']}" process="@this"
+								onclick="PF('dlgInfor').hide()">
+							</p:commandButton>
+						</div>
+					</div>
+				</p:panel>
+			</p:dialog>
+		</h:form>
+
+		<h:form id="search">
+			<div class="messagebox tc">
+				<ui:remove>
+					<p:growl id="designGrowl" showDetail="true" showSummary="true"
+						life="30000" />
+				</ui:remove>
+				<p:growl id="searchMessage" showSummary="false" showDetail="true"
+					sticky="true" life="30000" />
+			</div>
+			<p:panel id="panel" header="#{msg['btn.search']}" toggleable="true">
+				<div class="ui-g">
+					<div class="ui-g-2">
+						<h:outputText value="#{msg['label.right_name']} " />
+					</div>
+					<div class="ui-g-4">
+						<p:inputText id="name" styleClass="w80pc"
+							value="#{scRightController.searchObj.name}">
+						</p:inputText>
+						<p:watermark for="name" value="#{msg['label.right_name']}" />
+					</div>
+					<div class="ui-g-2">
+						<h:outputText value="#{msg['label.right_desc']} " />
+					</div>
+					<div class="ui-g-4">
+						<p:inputText id="description" styleClass="w80pc"
+							value="#{scRightController.searchObj.description}">
+						</p:inputText>
+						<p:watermark for="description" value="#{msg['label.right_desc']} " />
+					</div>
+				</div>
+
+				<div class="button-area fa" align="left">
+					<h:panelGrid columns="3">
+						<p:commandButton value="#{msg['btn.add_new']}"
+							action="#{scRightController.clear}"
+							update=":insertEditForm, :insertEditForm:dlgInfor, :insertEditForm:mainMessage"
+							oncomplete="PF('dlgInfor').show()">
+							<p:resetInput target=":insertEditForm" />
+						</p:commandButton>
+
+						<p:commandButton value="#{msg['btn.search']}"
+							update=":search:searchMessage, :insertEditForm:mainMessage, :form, :form:objectTable"
+							actionListener="#{scRightController.search}"
+							onstart="PF('blockUiSearch').show()"
+							oncomplete="PF('blockUiSearch').hide()" />
+					</h:panelGrid>
+				</div>
+			</p:panel>
+		</h:form>
+
+		<div class="cl h6"></div>
+		<h:form id="form">
+			<!-- <pe:blockUI target=":form:objectTable" content="blockUIContent" widgetVar="blockUiSearch" />						
+			<h:panelGrid id="blockUIContent" style="display:none;" styleClass="blockUi">
+				<h:graphicImage library="avalon-layout/images" name="ajaxloadingbar.gif" style="margin-right: 12px; vertical-align: middle;" />
+			</h:panelGrid> -->
+			<p:dataTable var="obj" value="#{scRightController.lazyDataModel}"
+				paginator="true" rows="25" filterEvent="keyup" rowKey="#{obj.id}"
+				rowIndexVar="rowIndex" paginatorPosition="bottom" id="objectTable"
+				widgetVar="objectTable" rowsPerPageTemplate="25, 50, 100"
+				lazy="true" emptyMessage="#{msg['label.no_data']}" editable="true"
+				editMode="cell">
+
+				<p:ajax event="page" onstart="PF('blockUiSearch').show()"
+					oncomplete="PF('blockUiSearch').hide()" />
+				<p:ajax event="sort" onstart="PF('blockUiSearch').show()"
+					oncomplete="PF('blockUiSearch').hide()" />
+
+				<p:column style="width: 3%; text-align: center;"
+					headerText="#{msg['label.stt']}">
+					<h:outputText value="#{rowIndex+ 1}" />
+				</p:column>
+
+				<p:column width="15%" headerText="#{msg['label.right_id']}">
+					<h:outputText value="#{obj.id}" />
+				</p:column>
+				<p:column width="15%" headerText="#{msg['label.right_name']}">
+					<h:outputText value="#{obj.name}" />
+				</p:column>
+				<p:column width="10%" headerText="#{msg['label.right_action']}">
+					<h:outputText value="#{obj.action}" />
+				</p:column>
+				<p:column width="10%" headerText="#{msg['label.right_desc']}">
+					<h:outputText value="#{obj.description}" />
+				</p:column>
+
+				<p:column style="width: 3%; text-align: center;"
+					headerText="#{msg['btn.right_edit']}">
+					<p:commandLink id="cmdEdit"
+						action="#{scRightController.prepareEdit}" update=":insertEditForm"
+						oncomplete="PF('dlgInfor').show()">
+						<p:resetInput target=":insertEditForm" />
+						<f:setPropertyActionListener
+							target="#{scRightController.selectedObj}" value="#{obj}" />
+						<p:graphicImage value="/resources/images/icon/edit.png" width="15"
+							height="18" title="#{msg['btn.right_edit']}" />
+					</p:commandLink>
+				</p:column>
+
+				<p:column style="width: 3%; text-align: center;"
+					headerText="#{msg['btn.right_del']}">
+					<p:commandLink id="cmdDelete"
+						actionListener="#{scRightController.delete(obj)}"
+						onstart="PF('blockUiSearch').show()"
+						oncomplete="PF('blockUiSearch').hide()"
+						update=":search:searchMessage,:form, :form:objectTable">
+						<f:setPropertyActionListener
+							target="#{scRightController.selectedObj}" value="#{obj}" />
+						<p:graphicImage value="/resources/images/icon/trash.png"
+							width="15" height="18" title="#{msg['btn.right_del']}" />
+						<p:confirm header="#{msg['label.confirm']}"
+							message="#{msg['label.are_you_sure']}" icon="ui-icon-alert" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="#{msg['btn.yes']}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg['btn.no']}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+		<script type="text/javascript">
+			
+		</script>
+		<style>
+.blockUi tbody td {
+	border-color: white !important;
+}
+</style>
+	</ui:define>
+</ui:composition>

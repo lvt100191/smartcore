@@ -1,0 +1,63 @@
+<ui:composition
+
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+
+    <!-- LAYOUT TOPBAR COVER -->
+    <div id="layout-topbar-cover">
+        <div id="layout-topbar-row">
+            <div id="layout-topbar-left" style="text-align: center;">
+                <ui:remove><a id="logo"><h:graphicImage name="images/logo.png" id="logo" library="olympos-layout" /></a></ui:remove>
+                <h4>Logo here</h4>
+            </div>
+            <div id="layout-topbar-right">
+
+                <a id="menu-resize-btn" class="topbar-link Animated03"><h:graphicImage name="images/menu-resize-btn-icon.svg" id="menu-resize-btn" library="olympos-layout" /></a>
+                <a id="mobile-menu-btn" class="topbar-link Animated03"><h:graphicImage name="images/menu-btn-icon.svg" id="menu-btn-icon" library="olympos-layout" /></a>
+                <span class="White Heading3">#{msg['page.title']}</span>
+                <a id="logout_id" class="topbar-link Animated03 Fright"><i class="icon-user7">	</i></a>
+				<span class="White Heading5 Fright" style="padding-top: 15px;">
+						<h:outputText   value="User name" rendered="true"/>
+				</span>
+                <div id="pnlProfile" >
+                    <span class="White Heading5 Fright" style="padding-top: 15px;"><h:outputText value="Thoát" rendered="true"/></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#logout_id').click(function(){
+            $('#pnlProfile').slideToggle();
+        });
+    </script>
+    <style type="text/css">
+        #pnlProfile{
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            z-index: 999;
+            background: #282828;
+            opacity: 0.9;
+            /*   background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee)); */
+            /*   background-image: -webkit-linear-gradient(top, #fff, #fff); */
+            /*   background-image: -moz-linear-gradient(top, #fff, #fff); */
+            /*   background-image: -ms-linear-gradient(top, #fff, #fdce0c); */
+            /*   background-image: -o-linear-gradient(top, #fff, #fff); */
+            /*   background-image: linear-gradient(top, #ecaf09, #fdce0c);   */
+            padding: 15px;
+            -moz-box-shadow: 0 3px 3px -1px rgba(0,0,0,.9);
+            -webkit-box-shadow: 0 3px 3px -1px rgba(0,0,0,.9);
+            box-shadow: 0 3px 3px -1px rgba(0,0,0,.9);
+            -moz-border-radius: 3px 0 3px 3px;
+            -webkit-border-radius: 3px 0 3px 3px;
+            border-radius: 4px 0 4px 4px;
+            width: 100px;
+        }
+    </style>
+</ui:composition>

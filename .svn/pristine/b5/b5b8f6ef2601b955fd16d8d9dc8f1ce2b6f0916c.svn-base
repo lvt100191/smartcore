@@ -1,0 +1,63 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<url-mapping id="home">
+		<pattern value="/home" />
+		<view-id value="/faces/home/index.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="error">
+		<pattern value="/error" />
+		<view-id value="/error.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="dashboard">
+		<pattern value="/dashboard" />
+		<view-id value="/faces/dashboard.xhtml" />
+	</url-mapping>
+	<url-mapping id="sample">
+		<pattern value="/sample" />
+		<view-id value="/faces/sample.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/faces/login.xhtml" />
+	</url-mapping>
+		
+<!-- Phần config của tab manager -->
+	<url-mapping id="manager">
+		<pattern value="/manager" />
+		<view-id value="/faces/manager/index.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="manager-example" parentId="manager">
+		<pattern value="/example" />
+		<view-id value="/faces/manager/example/index.xhtml" />
+	</url-mapping>
+	
+	<!-- system -->
+	<url-mapping id="system">
+		<pattern value="/system" />
+		<view-id value="/faces/system/index.xhtml" />
+	</url-mapping>
+	<url-mapping id="system-user" parentId="system">
+		<pattern value="/user" />
+		<view-id value="/faces/system/user/user.xhtml" />
+	</url-mapping>
+	<url-mapping id="system-menu" parentId="system">
+		<pattern value="/menu" />
+		<view-id value="/faces/system/menu/menu.xhtml" />
+	</url-mapping>
+	<url-mapping id="system-authorization-right" parentId="system">
+		<pattern value="/authorization/right" />
+		<view-id value="/faces/system/authorization/right.xhtml" />
+	</url-mapping>
+	<url-mapping id="system-authorization-role" parentId="system">
+		<pattern value="/authorization/role" />
+		<view-id value="/faces/system/authorization/role.xhtml" />
+	</url-mapping>
+
+</pretty-config>
